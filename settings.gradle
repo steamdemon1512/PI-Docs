@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = 'https://maven.neoforged.net/snapshots' }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+repositories {
+    mavenLocal()
+}
+
+file('build.properties').withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
